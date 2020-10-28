@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AOC2015
 {
+    // I think this should also be an abstract class.
+    // No need to repeat the area and volume calculations in each class that implements the IPresent Interface 
+    // 
     public class Present : IPresent
     {
         int _length;

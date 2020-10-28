@@ -7,22 +7,16 @@ namespace AOC2015
 {
     public class AOCDay03Part2 : IAOCProblem
     {
-        String[] _input;
         List<IHouse> _visitedHouses;
-
-        IStandardMessages _standardMessages;
-
-        public AOCDay03Part2(String[] input, IStandardMessages standardMessages)
+        
+        public AOCDay03Part2(String[] input, IStandardMessages standardMessages):base(input, standardMessages)
         {
-            _input = input;
-            _standardMessages = standardMessages;
-
             _visitedHouses = Factory.CreateListHouse();
         }
 
-        public void Solve()
+        protected override string doSolve()
         {
-            _standardMessages.StartingProblem();
+            
 
             int instructionCount = 0;
             int housePresentCount = 0;
@@ -66,7 +60,7 @@ namespace AOC2015
 
             housePresentCount = _visitedHouses.Count;
 
-            _standardMessages.ProblemAnswered($"{ housePresentCount } houses received at least one present.");
+            return $"{ housePresentCount } houses received at least one present.";
             
         }
 

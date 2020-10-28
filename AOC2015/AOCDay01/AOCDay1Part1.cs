@@ -6,20 +6,10 @@ namespace AOC2015
 {
     public class AOCDay1Part1 : IAOCProblem
     {
-        String[] _input;
+        public AOCDay1Part1(string[] input, IStandardMessages standardMessages) : base(input, standardMessages) { }
 
-        IStandardMessages _standardMessages;
-
-        public AOCDay1Part1(String[] input, IStandardMessages standardMessages)
+        protected override string doSolve()
         {
-            _input = input;
-            _standardMessages = standardMessages;
-        }
-
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
-
             int currentFloor = 0;
 
             foreach (String line in _input)
@@ -34,7 +24,7 @@ namespace AOC2015
                 
             }
 
-            _standardMessages.ProblemAnswered($"Santa is on floor { currentFloor }.");
+            return $"Santa is on floor { currentFloor }.";
             
         }
     }

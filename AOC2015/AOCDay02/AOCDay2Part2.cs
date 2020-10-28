@@ -6,19 +6,10 @@ namespace AOC2015
 {
     public class AOCDay2Part2 : IAOCProblem
     {
-        String[] _input;
+        public AOCDay2Part2(String[] input, IStandardMessages standardMessages) : base(input, standardMessages) { }
 
-        IStandardMessages _standardMessages;
-
-        public AOCDay2Part2(String[] input, IStandardMessages standardMessages)
+        protected override string doSolve()
         {
-            _input = input;
-            _standardMessages = standardMessages;
-        }
-
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
 
             int ribbonRequired = 0;
 
@@ -39,7 +30,7 @@ namespace AOC2015
                 
             }
 
-            _standardMessages.ProblemAnswered($"The Elves should order { ribbonRequired } feet of ribbon.");
+            return $"The Elves should order { ribbonRequired } feet of ribbon.";
             
         }
     }

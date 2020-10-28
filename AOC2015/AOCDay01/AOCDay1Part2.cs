@@ -6,20 +6,11 @@ namespace AOC2015
 {
     public class AOCDay1Part2 : IAOCProblem
     {
-        String[] _input;
 
-        IStandardMessages _standardMessages;
+        public AOCDay1Part2(String[] input, IStandardMessages standardMessages):base(input, standardMessages) { }
 
-        public AOCDay1Part2(String[] input, IStandardMessages standardMessages)
+        protected override string doSolve()
         {
-            _input = input;
-            _standardMessages = standardMessages;
-        }
-
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
-
             int currentFloor = 0;
             int currentPosition = 1;
             bool inBasement = false;
@@ -46,9 +37,9 @@ namespace AOC2015
                     break;
             }
 
-            _standardMessages.ProblemAnswered($"Santa enters the basement on position { currentPosition }.");
+            return $"Santa enters the basement on position { currentPosition }.";
         }
 
-        
+
     }
 }
