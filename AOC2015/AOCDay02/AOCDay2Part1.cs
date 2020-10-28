@@ -6,20 +6,10 @@ namespace AOC2015
 {
     public class AOCDay2Part1 : IAOCProblem
     {
-        String[] _input;
+        public AOCDay2Part1(String[] input, IStandardMessages standardMessages): base(input, standardMessages) { }
 
-        IStandardMessages _standardMessages;
-
-        public AOCDay2Part1(String[] input, IStandardMessages standardMessages)
+        protected override string doSolve()
         {
-            _input = input;
-            _standardMessages = standardMessages;
-        }
-
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
-
             int wrappingPaperRequired = 0;
 
             foreach (String line in _input)
@@ -39,7 +29,7 @@ namespace AOC2015
                 
             }
 
-            _standardMessages.ProblemAnswered($"The Elves should order { wrappingPaperRequired } square feet of wrapping paper.");
+            return $"The Elves should order { wrappingPaperRequired } square feet of wrapping paper.";
             
         }
     }

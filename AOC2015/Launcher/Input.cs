@@ -6,6 +6,7 @@ namespace AOC2015
 {
     public class Input : IInput
     {
+        // The default access modifier is "internal" is this intentional?
         InputType _inputType;
         String _filename;
 
