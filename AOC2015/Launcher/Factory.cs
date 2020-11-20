@@ -41,7 +41,7 @@ namespace AOC2015
             return new Validator(errorMessages);
         }
 
-        public static IAOCProblem CreateProblem(Int32 day, Int32 part, InputType inputType)
+        public static AOCProblem CreateProblem(Int32 day, Int32 part, InputType inputType)
         {
             ICommand command = CreateCommand();
             IStandardMessages standardMessages = CreateStandardMessages();
@@ -87,6 +87,84 @@ namespace AOC2015
                     }
                     break;
 
+                case 4:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d04p01_input.txt");
+                            return new AOCDay04Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d04p02_input.txt");
+                            return new AOCDay04Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 5:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d05p01_input.txt");
+                            return new AOCDay05Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d05p02_input.txt");
+                            return new AOCDay05Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 6:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d06p01_input.txt");
+                            return new AOCDay06Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d06p02_input.txt");
+                            return new AOCDay06Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 7:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d07p01_input.txt");
+                            return new AOCDay07Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d07p02_input.txt");
+                            return new AOCDay07Part1(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 8:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d08p01_input.txt");
+                            return new AOCDay08Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d08p02_input.txt");
+                            return new AOCDay08Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 9:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d09p01_input.txt");
+                            return new AOCDay09Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d09p02_input.txt");
+                            return new AOCDay09Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -121,8 +199,75 @@ namespace AOC2015
             return new List<IHouse>();
         }
 
+        public static ILight CreateLight()
+        {
+            return new Light();
+        }
 
+        public static IDimmableLight CreateDimmableLight()
+        {
+            return new DimmableLight();
+        }
 
-        
+        public static ILightInstruction CreateLightInstruction(String lightInstruction)
+        {
+            return new LightInstruction(lightInstruction);
+        }
+
+        public static IWire CreateWire(String name, ushort signal, bool hasSignal)
+        {
+            return new Wire(name, signal, hasSignal);
+        }
+
+        public static IWire CreateWire(String name)
+        {
+            return new Wire(name);
+        }
+
+        public static IWire CreateWire()
+        {
+            return new Wire();
+        }
+
+        public static LogicGate CreateLogicGateAND(ref IWire input1, ref IWire input2, ref IWire output)
+        {
+            return new LogicGateAND(ref input1, ref input2, ref output);
+        }
+
+        public static LogicGate CreateLogicGateOR(ref IWire input1, ref IWire input2, ref IWire output)
+        {
+            return new LogicGateOR(ref input1, ref input2, ref output);
+        }
+
+        public static LogicGate CreateLogicGateNOT(ref IWire input1, ref IWire output)
+        {
+            return new LogicGateNOT(ref input1, ref output);
+        }
+
+        public static LogicGate CreateLogicGateAssign(ref IWire input1, ref IWire output)
+        {
+            return new LogicGateAssign(ref input1, ref output);
+        }
+
+        public static LogicGate CreateLogicLShift(ref IWire input1, ref IWire input2, ref IWire output)
+        {
+            return new LogicGateLShift(ref input1, ref input2, ref output);
+        }
+
+        public static LogicGate CreateLogicRShift(ref IWire input1, ref IWire input2, ref IWire output)
+        {
+            return new LogicGateRShift(ref input1, ref input2, ref output);
+        }
+
+        public static IPath<String> CreatePath(String end1, String end2, Int32 distance)
+        {
+            return new Path<String>(end1, end2, distance);
+        }
+
+        public static IPathCollection CreatePathCollection(List<IPath<String>> paths)
+        {
+            return new PathCollection<String>(paths);
+        }
+
     }
 }

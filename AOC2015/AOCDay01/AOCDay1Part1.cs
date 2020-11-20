@@ -4,25 +4,15 @@ using System.Text;
 
 namespace AOC2015
 {
-    public class AOCDay1Part1 : IAOCProblem
+    public class AOCDay1Part1 : AOCProblem
     {
-        String[] _input;
+        public AOCDay1Part1(String[] input, IStandardMessages standardMessages) : base(input, standardMessages) { }
 
-        IStandardMessages _standardMessages;
-
-        public AOCDay1Part1(String[] input, IStandardMessages standardMessages)
+        protected override String DoSolve(String[] input)
         {
-            _input = input;
-            _standardMessages = standardMessages;
-        }
-
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
-
             int currentFloor = 0;
 
-            foreach (String line in _input)
+            foreach (String line in input)
             {             
                 foreach (char x in line)
                 {
@@ -34,7 +24,7 @@ namespace AOC2015
                 
             }
 
-            _standardMessages.ProblemAnswered($"Santa is on floor { currentFloor }.");
+            return $"Santa is on floor { currentFloor }.";
             
         }
     }

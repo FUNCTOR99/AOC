@@ -27,6 +27,7 @@ namespace AOC2015
                 _errorMessages.ErrorAccessingFile(_fileName);
                 _errorMessages.ExceptionMessage(ex.Message);
 
+                Environment.Exit(0);
                 return null;
             }
         }

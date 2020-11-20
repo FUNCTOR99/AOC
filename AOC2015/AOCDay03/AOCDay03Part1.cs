@@ -5,32 +5,24 @@ using System.Text;
 
 namespace AOC2015
 {
-    public class AOCDay03Part1 : IAOCProblem
+    public class AOCDay03Part1 : AOCProblem
     {
-        String[] _input;
         List<IHouse> _visitedHouses;
 
-        IStandardMessages _standardMessages;
-
-        public AOCDay03Part1(String[] input, IStandardMessages standardMessages)
+        public AOCDay03Part1(String[] input, IStandardMessages standardMessages) : base(input, standardMessages)
         {
-            _input = input;
-            _standardMessages = standardMessages;
-
             _visitedHouses = Factory.CreateListHouse();
         }
 
-        public void Solve()
-        {
-            _standardMessages.StartingProblem();
-
+        protected override String DoSolve(String[] input)
+        {            
             int housePresentCount = 0;
 
             Point santasLocation = new Point(0, 0);
 
             _visitedHouses.Add(Factory.CreateHouse(santasLocation));
 
-            foreach (String line in _input)
+            foreach (String line in input)
             {
                 foreach (char instruction in line)
                 {
@@ -65,7 +57,7 @@ namespace AOC2015
 
             housePresentCount = _visitedHouses.Count;
 
-            _standardMessages.ProblemAnswered($"{ housePresentCount } houses received at least one present.");
+            return $"{ housePresentCount } houses received at least one present.";
             
         }
 

@@ -17,7 +17,7 @@ namespace AOC2015
             Int32 part = command.GetProblemPart();
             InputType inputType = command.GetInputType();
 
-            IAOCProblem problem = Factory.CreateProblem(day, part, inputType);
+            AOCProblem problem = Factory.CreateProblem(day, part, inputType);
             
             problem.Solve();
 
