@@ -15,7 +15,12 @@ namespace AOC2015
 
         public static String SubStringPre(String input, String delimiter)
         {
-            return input.Substring(0, input.IndexOf(delimiter) - 1);
+            return input.Substring(0, input.IndexOf(delimiter));
+        }
+
+        public static String SubStringPostAndPre(String input, String postDelimiter, String preDelimeter)
+        {
+            return StringOps.SubStringPost(StringOps.SubStringPre(input, preDelimeter), postDelimiter);
         }
     }
 }

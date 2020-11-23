@@ -165,6 +165,84 @@ namespace AOC2015
                     }
                     break;
 
+                case 10:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d10p01_input.txt");
+                            return new AOCDay10Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d10p02_input.txt");
+                            return new AOCDay10Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 11:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d11p01_input.txt");
+                            return new AOCDay11Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d11p02_input.txt");
+                            return new AOCDay11Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 12:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d12p01_input.txt");
+                            return new AOCDay12Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d12p02_input.txt");
+                            return new AOCDay12Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 13:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d13p01_input.txt");
+                            return new AOCDay13Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d13p02_input.txt");
+                            return new AOCDay13Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 14:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d14p01_input.txt");
+                            return new AOCDay14Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d14p02_input.txt");
+                            return new AOCDay14Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 15:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d15p01_input.txt");
+                            return new AOCDay15Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d15p02_input.txt");
+                            return new AOCDay15Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -269,5 +347,49 @@ namespace AOC2015
             return new PathCollection<String>(paths);
         }
 
+        public static IPassword CreatePassword(String password)
+        {
+            return new Password(password);
+        }
+
+        public static IPasswordFinder CreatePasswordFinder(String passwordSeed)
+        {
+            return new PasswordFinder(passwordSeed);
+        }
+
+        public static IRelationship CreateRelationship(String sourceName, String acquaintenaceName, int happiness)
+        {
+            return new Relationship( sourceName,  acquaintenaceName,  happiness);
+        }
+
+        public static ITableSeating CreateTableSeating()
+        {
+            return new TableSeating();
+        }
+
+        public static IReindeer CreateReindeer(String name, int flySpeed, int flyDuration, int restDuration)
+        {
+            return new Reindeer(name, flySpeed, flyDuration, restDuration);
+        }
+
+        public static IRacingReindeer CreateRacingReindeer(String name, int flySpeed, int FlyDuration, int restDuration)
+        {
+            return new RacingReindeer(name, flySpeed, FlyDuration, restDuration);
+        }
+
+        public static IRacingReindeerPoints CreateRacingReindeerPoints(String name, int flySpeed, int FlyDuration, int restDuration)
+        {
+            return new RacingReindeerPoints(name, flySpeed, FlyDuration, restDuration);
+        }
+
+        public static IIngredient CreateIngredient(string name, int capacity, int durability, int flavor, int texture, int calories)
+        {
+            return new Ingredient(name, capacity, durability, flavor, texture, calories);
+        }
+
+        public static ICookie CreateCookie(List<IIngredient> ingredients, int[] ingredientQuantities)
+        {
+            return new Cookie(ingredients, ingredientQuantities);
+        }
     }
 }
