@@ -243,16 +243,29 @@ namespace AOC2015
                     }
                     break;
 
-                case 202001:
+                case 16:
                     switch (part)
                     {
                         case 1:
-                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d01p01_input.txt");
-                            return new AOC2020Day01Part1(inputp1.GetInput(), standardMessages);
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d16p01_input.txt");
+                            return new AOCDay16Part1(inputp1.GetInput(), standardMessages);
 
                         case 2:
-                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d01p01_input.txt");
-                            return new AOC2020Day01Part2(inputp2.GetInput(), standardMessages);
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d16p02_input.txt");
+                            return new AOCDay16Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 17:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2015_d17p01_input.txt");
+                            return new AOCDay17Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2015_d17p02_input.txt");
+                            return new AOCDay17Part2(inputp2.GetInput(), standardMessages);
                     }
                     break;
 
@@ -403,6 +416,16 @@ namespace AOC2015
         public static ICookie CreateCookie(List<IIngredient> ingredients, int[] ingredientQuantities)
         {
             return new Cookie(ingredients, ingredientQuantities);
+        }
+
+        public static IAuntSue CreateAuntSue(String inputParameters)
+        {
+            return new AuntSue(inputParameters);
+        }
+
+        public static IRealAuntSue CreateRealAuntSue(String inputParameters)
+        {
+            return new RealAuntSue(inputParameters);
         }
     }
 }

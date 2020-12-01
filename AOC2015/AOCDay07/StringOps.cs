@@ -22,5 +22,15 @@ namespace AOC2015
         {
             return StringOps.SubStringPost(StringOps.SubStringPre(input, preDelimeter), postDelimiter);
         }
+
+        public static String ParameterAfter(String input, String after, String terminationString)
+        {
+            String result = "";
+
+            result = SubStringPost(input, after);
+            result = SubStringPre(result, terminationString);
+
+            return result;
+        }
     }
 }
