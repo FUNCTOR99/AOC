@@ -14,7 +14,7 @@ namespace AOC2015
         }
         public bool IsDayValid(Int32 day)
         {
-            if ((day >= 1) && ((day <= 25)))
+            if ((day >= 1) && ((day <= 202025)))
             {
                 return true;
             }
