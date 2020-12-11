@@ -373,6 +373,32 @@ namespace AOC2015
                     }
                     break;
 
+                case 202009:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d09p01_input.txt");
+                            return new AOC2020Day09Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d09p01_input.txt");
+                            return new AOC2020Day09Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 202010:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d10p01_input.txt");
+                            return new AOC2020Day10Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d10p01_input.txt");
+                            return new AOC2020Day10Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -530,6 +556,16 @@ namespace AOC2015
         public static IRealAuntSue CreateRealAuntSue(String inputParameters)
         {
             return new RealAuntSue(inputParameters);
+        }
+
+        public static INode CreateNode(int value)
+        {
+            return new Node(value);
+        }
+
+        public static IAdapterTree CreateAdapterTree(int[] values)
+        {
+            return new AdapterTree(values);
         }
     }
 }
