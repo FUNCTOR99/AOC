@@ -19,7 +19,11 @@ namespace AOC2015
         {
             _standardMessages.StartingProblem();
 
+            DateTime startTime = DateTime.Now;
+
             String answer = DoSolve(_input);
+
+            answer = $"{answer} (Calculated in {DateTime.Now.Subtract(startTime).TotalSeconds} seconds.)";
 
             _standardMessages.ProblemAnswered(answer);
         }
