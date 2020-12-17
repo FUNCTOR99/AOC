@@ -477,6 +477,19 @@ namespace AOC2015
                     }
                     break;
 
+                case 202017:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d17p01_input.txt");
+                            return new AOC2020Day17Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d17p01_input.txt");
+                            return new AOC2020Day17Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -648,6 +661,16 @@ namespace AOC2015
         public static ITicketParameter CreateTicketParameter(string input)
         {
             return new TicketParameter(input);
+        }
+
+        public static IPoint3D CreatePoint3D(int x, int y, int z)
+        {
+            return new Point3D(x, y, z);
+        }
+
+        public static IPoint4D CreatePoint4D(int w, int x, int y, int z)
+        {
+            return new Point4D(w, x, y, z);
         }
     }
 }
