@@ -503,6 +503,45 @@ namespace AOC2015
                     }
                     break;
 
+                case 202019:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d19p03_input.txt");
+                            return new AOC2020Day19Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d19p01_input.txt");
+                            return new AOC2020Day19Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 202020:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d20p01_input.txt");
+                            return new AOC2020Day20Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d20p01_input.txt");
+                            return new AOC2020Day20Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
+                case 202021:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d21p01_input.txt");
+                            return new AOC2020Day21Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d21p01_input.txt");
+                            return new AOC2020Day21Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
