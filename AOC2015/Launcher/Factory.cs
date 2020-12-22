@@ -542,6 +542,19 @@ namespace AOC2015
                     }
                     break;
 
+                case 202022:
+                    switch (part)
+                    {
+                        case 1:
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d22p01_input.txt");
+                            return new AOC2020Day22Part1(inputp1.GetInput(), standardMessages);
+
+                        case 2:
+                            IInput inputp2 = CreateInput(inputType, "Inputs/2020_d22p01_input.txt");
+                            return new AOC2020Day22Part2(inputp2.GetInput(), standardMessages);
+                    }
+                    break;
+
                 default:
                     break;
             }
