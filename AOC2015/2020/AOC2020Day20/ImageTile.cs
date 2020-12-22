@@ -8,23 +8,23 @@ namespace AOC2015
 {
     public class ImageTile
     {
-        List<string> ImageData { get; set; }
+        public List<string> ImageData { get; set; }
 
-        List<int> Borders { get; set; }
+        public List<int> Borders { get; set; }
 
-        int TileID { get; set; }
+        public int TileID { get; set; }
 
-        int TopBorder { get; set; }
-        int TopBorderFlippedHoriz { get; set; }
+        public int TopBorder { get; set; }
+        //int TopBorderFlippedHoriz { get; set; }
 
-        int RightBorder { get; set; }
-        int RightBorderFlippedVert { get; set; }
+        public int RightBorder { get; set; }
+        //int RightBorderFlippedVert { get; set; }
 
-        int BottomBorder { get; set; }
-        int BottomBorderFlippedHoriz { get; set; }
+        public int BottomBorder { get; set; }
+        //int BottomBorderFlippedHoriz { get; set; }
 
-        int LeftBorder { get; set; }
-        int LeftBorderFlippedVert { get; set; }
+        public int LeftBorder { get; set; }
+        //int LeftBorderFlippedVert { get; set; }
 
         public ImageTile(List<string> input)
         {
@@ -57,7 +57,7 @@ namespace AOC2015
 
             //Top Border
             TopBorder = 0;
-            TopBorderFlippedHoriz = 0;
+            //TopBorderFlippedHoriz = 0;
 
             for (int i = 0; i < ImageData[0].Length; i++)
             {
@@ -67,14 +67,14 @@ namespace AOC2015
                 }
             }
 
-            TopBorderFlippedHoriz = BinaryFlip(TopBorder, ImageData[0].Length);
+            //TopBorderFlippedHoriz = BinaryFlip(TopBorder, ImageData[0].Length);
 
             Borders.Add(TopBorder);
-            Borders.Add(TopBorderFlippedHoriz);
+            //Borders.Add(TopBorderFlippedHoriz);
 
             //Right Border
             RightBorder = 0;
-            RightBorderFlippedVert = 0;
+            //RightBorderFlippedVert = 0;
 
             for (int i = 0; i < ImageData.Count(); i++)
             {
@@ -84,14 +84,14 @@ namespace AOC2015
                 }
             }
 
-            RightBorderFlippedVert = BinaryFlip(RightBorder, ImageData.Count());
+            //RightBorderFlippedVert = BinaryFlip(RightBorder, ImageData.Count());
 
             Borders.Add(RightBorder);
-            Borders.Add(RightBorderFlippedVert);
+            //Borders.Add(RightBorderFlippedVert);
 
             //Bottom Border
             BottomBorder = 0;
-            BottomBorderFlippedHoriz = 0;
+            //BottomBorderFlippedHoriz = 0;
 
             for (int i = 0; i < ImageData[ImageData.Count() - 1].Length; i++)
             {
@@ -101,14 +101,14 @@ namespace AOC2015
                 }
             }
 
-            BottomBorderFlippedHoriz = BinaryFlip(BottomBorder, ImageData[ImageData.Count() - 1].Length);
+            //BottomBorderFlippedHoriz = BinaryFlip(BottomBorder, ImageData[ImageData.Count() - 1].Length);
 
             Borders.Add(BottomBorder);
-            Borders.Add(BottomBorderFlippedHoriz);
+            //Borders.Add(BottomBorderFlippedHoriz);
 
             //Left Border
             LeftBorder = 0;
-            LeftBorderFlippedVert = 0;
+            //LeftBorderFlippedVert = 0;
 
             for (int i = 0; i < ImageData.Count(); i++)
             {
@@ -118,30 +118,66 @@ namespace AOC2015
                 }
             }
 
-            LeftBorderFlippedVert = BinaryFlip(LeftBorder, ImageData.Count());
+            //LeftBorderFlippedVert = BinaryFlip(LeftBorder, ImageData.Count());
 
             Borders.Add(LeftBorder);
-            Borders.Add(LeftBorderFlippedVert);
+            //Borders.Add(LeftBorderFlippedVert);
         }
 
-        public void Rotate(int angle)
+        public List<string> Rotate90()
         {
+            List<string> result = new List<string>();
 
+            result.Add($"Tile {TileID}:");
+
+            for (int i = 0; i < ImageData[0].Length; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                for (int j = ImageData.Count() - 1; j >= 0; j--)
+                {
+                    sb.Append(ImageData[j][i]);
+                }
+                result.Add(sb.ToString());
+            }
+
+            return result;
         }
 
-        public void Flip(bool horizontal)
+        public List<string> Flip()
         {
+            List<string> result = new List<string>();
 
+            result.Add($"Tile {TileID}:");
+
+            for (int i = ImageData.Count() - 1; i >= 0; i--)
+            {
+                result.Add(ImageData[i]);
+            }
+
+            return result;
         }
 
         private int BinaryFlip(int input, int numBits)
         {
             int result = 0;
 
+            string bin = Convert.ToString(input, toBase: 2).PadLeft(numBits, '0');
+
+            StringBuilder sb = new StringBuilder();
+
             for (int i = 0; i < numBits; i++)
             {
-                result = result | (input & (1 << numBits - i));
+                sb.Append(bin[numBits - i - 1]);
             }
+
+            result = Convert.ToInt32(sb.ToString(), 2);
+
+            //for (int i = 0; i < numBits; i++)
+            //{
+            //    //result = result | (input & (1 << numBits - 1 - i));
+            //    result = result | ((input & (1 << i)) << (numBits - 1 - i));
+            //}
 
             return result;
         }
