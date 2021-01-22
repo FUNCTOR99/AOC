@@ -507,7 +507,7 @@ namespace AOC2015
                     switch (part)
                     {
                         case 1:
-                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d19p03_input.txt");
+                            IInput inputp1 = CreateInput(inputType, "Inputs/2020_d19p01_input.txt");
                             return new AOC2020Day19Part1(inputp1.GetInput(), standardMessages);
 
                         case 2:

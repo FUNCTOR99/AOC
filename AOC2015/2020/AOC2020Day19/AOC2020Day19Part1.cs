@@ -40,7 +40,7 @@ namespace AOC2015
             }
 
             List<string> possibleMatches = new List<string>();
-            possibleMatches = FindAllMatchingStrings(ref rules, 0, ref possibleMatches);
+            possibleMatches = FindAllMatchingStrings(ref rules, 42);
 
             int count = 0;
 
@@ -55,32 +55,52 @@ namespace AOC2015
 
         }       
 
-        private List<string> FindAllMatchingStrings(ref List<Rule> rules, int startingRule, ref List<string> matches)
+        private List<string> FindAllMatchingStrings(ref List<Rule> rules, int currentRule)
         {
-            Rule startRule = rules.Where(r => r.RuleID == startingRule).First();
-            List<string> result = new List<string>();
+            Rule startRule = rules.Where(r => r.RuleID == currentRule).First();
+            List<string> results = new List<string>();
 
             if (startRule.MatchChar != 0)
             {
-                result.Add(startRule.MatchChar.ToString());
-                return result;
+                results.Add(startRule.MatchChar.ToString());
+                return results;
             }
             else
             {
                 foreach (int[] rule in startRule.SubRules)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    List<string> subRuleResults = new List<string>();
+                    List<string> workingResults = new List<string>();
 
                     foreach (int item in rule)
                     {
-                        //result.AddRange(FindAllMatchingStrings(ref rules, item, ref matches));
-                        sb.Append(FindAllMatchingStrings(ref rules, item, ref matches));                        
+                        workingResults = subRuleResults.ToList();
+                        subRuleResults.Clear();
+
+                        List<String> individualResults = FindAllMatchingStrings(ref rules, item);                             
+                        
+                        foreach (string individualResult in individualResults)
+                        {
+                            if (workingResults.Count == 0)
+                            {
+                                subRuleResults.Add($"{individualResult}");
+                            }
+                            else
+                            {
+                                int workingResultCount = workingResults.Count;
+
+                                for (int i = 0; i < workingResultCount; i++)
+                                {
+                                    subRuleResults.Add($"{workingResults[i]}{individualResult}");
+                                }
+                            }
+                        }                                                                     
                     }
 
-                    matches.Add(sb.ToString());
+                    results.AddRange(subRuleResults);
                 }
 
-                return result;
+                return results;
             }
         }
 

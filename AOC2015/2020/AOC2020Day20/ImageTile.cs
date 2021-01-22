@@ -33,6 +33,14 @@ namespace AOC2015
             CalculateBorders();
         }
 
+        public ImageTile(int tileID, List<string> imageData)
+        {
+            ImageData = imageData.ToList();
+            TileID = tileID;
+
+            CalculateBorders();
+        }
+
         private void BuildTile(List<string> input)
         {
             ImageData = new List<string>();
