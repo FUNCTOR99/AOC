@@ -14,109 +14,64 @@ namespace AOC2015
 
         protected override String DoSolve(String[] input)
         {
-            //List<int> cups = new List<int>();
-            LinkedList<int> llCups = new LinkedList<int>();
+            long result = 0;
+            int numCups         = 1000000;
+            int numIterations   = 10000000;
+
+            List<int> cups = new List<int>();
 
             foreach (String line in input)
             {
                 foreach (char cup in line)
                 {
-                    llCups.AddLast(Convert.ToInt32(cup.ToString()));
+                    cups.Add(Convert.ToInt32(cup.ToString()));
                 }
             }
 
-            for (int i = llCups.Max() + 1; i <= 1000000; i++)
+            for (int i = cups.Max() + 1; i <= numCups; i++)
             {
-                llCups.AddLast(i);
+                cups.Add(i);
             }
 
 
             int currentIndex = 0;
-            int iterations = 10000000;
             int currentIteration = 0;
 
-            int min = llCups.Min();
-            int max = llCups.Max();
-            int cupCount = llCups.Count();
-
-            LinkedListNode<int> currentValue = llCups.First;
-
-            while (currentIteration < iterations)
+            while (currentIteration < numIterations)
             {
-                //int currentValue = cups[currentIndex];
+                int currentValue = cups[currentIndex];
 
-                List<int> next3Values = NextValues(ref llCups, currentValue, 3);
+                int cup1 = cups[CircularIndex(cups.Count(), currentIndex + 1)];
+                int cup2 = cups[CircularIndex(cups.Count(), currentIndex + 2)];
+                int cup3 = cups[CircularIndex(cups.Count(), currentIndex + 3)];
 
-                foreach (int cup in next3Values)
-                {
-                    llCups.Remove(cup);
-                }
+                cups.Remove(cup1);
+                cups.Remove(cup2);
+                cups.Remove(cup3);
 
-                //int cup1 = //cups[CircularIndex(cupCount, currentIndex + 1)];
-                //int cup2 = cups[CircularIndex(cupCount, currentIndex + 2)];
-                //int cup3 = cups[CircularIndex(cupCount, currentIndex + 3)];
+                int destinationIndex = DestinationCupIndex(cups, currentValue);
 
-                //cups.Remove(cup1);
-                //cups.Remove(cup2);
-                //cups.Remove(cup3);
+                InsertOrAdd(ref cups, destinationIndex + 1, cup1);
+                InsertOrAdd(ref cups, destinationIndex + 2, cup2);
+                InsertOrAdd(ref cups, destinationIndex + 3, cup3);
 
-                LinkedListNode<int> destinationNode = DestinationCupIndex(ref llCups, currentValue);
-
-                foreach (int cup in next3Values)
-                {
-                    LinkedListNode<int> newNode = llCups.AddAfter(destinationNode, cup);
-
-                    destinationNode = newNode;
-                }
-
-                //InsertOrAdd(ref cups, destinationIndex + 1, cup1);
-                //InsertOrAdd(ref cups, destinationIndex + 2, cup2);
-                //InsertOrAdd(ref cups, destinationIndex + 3, cup3);
-
-                //currentIndex = CircularIndex(cupCount, cups.IndexOf(currentValue) + 1);
-
-                currentValue = NextNode(ref llCups, currentValue);
-
+                currentIndex = CircularIndex(cups.Count(), cups.IndexOf(currentValue) + 1);
                 currentIteration++;
             }
 
-            long result = (long)llCups.Find(1).Next.Value * (long)llCups.Find(1).Next.Next.Value;
 
-            return $"Result { result }.";
-        }
+            //StringBuilder sb = new StringBuilder();
+            int index1 = cups.IndexOf(1);
 
-        private LinkedListNode<int> NextNode(ref LinkedList<int> list, LinkedListNode<int> node)
-        {
-            if (node.Next == null)
-                return list.First;
-            else
-                return node.Next;
-        }
+            long cupAfter1 = (long) cups[index1 + 1];
+            long cup2After1 = (long) cups[index1 + 2];
 
-        private List<int> NextValues(ref LinkedList<int> list, LinkedListNode<int> node, int numberOfValues)
-        {
-            List<int> values = new List<int>();
+            //for (int i = 1; i < cups.Count(); i++)
+            //{
+            //    sb.Append(cups[CircularIndex(cups.Count(), index1 + i)]);
+            //}
 
-            //LinkedListNode<int> currentValue = list.Find(value);
-            LinkedListNode<int> nextValue;
-
-            for (int i = 0; i < numberOfValues; i++)
-            {
-                if (node.Next != null)
-                {
-                    nextValue = node.Next;
-                }
-                else
-                {
-                    nextValue = list.First;
-                }
-
-                values.Add(nextValue.Value);
-
-                node = nextValue;
-            }
-
-            return values;
+            return $"Result Cup after 1: {cupAfter1}, 2 Cups after 1: {cup2After1}, Product: { cupAfter1 * cup2After1 }";
         }
 
         private int CircularIndex(int numItems, int index)
@@ -124,49 +79,29 @@ namespace AOC2015
             return (index + numItems) % numItems;
         }
 
-        private LinkedListNode<int> DestinationCupIndex(ref LinkedList<int> cups, LinkedListNode<int> node) //, int globalMin, int globalMax)
+        private int DestinationCupIndex(List<int> cups, int value)
         {
-            LinkedListNode<int> destinationNode = null; 
+            int destinationCupValue = value - 1;
 
-            for (int i = 1; i <= 3; i++)
+            int iterationCount = 0;
+
+            while (iterationCount < 3)
             {
-                destinationNode = cups.Find(node.Value - i);
-
-                if (destinationNode != null)
-                    break;
+                if (cups.Contains(destinationCupValue))
+                {
+                    return cups.IndexOf(destinationCupValue);
+                }
+                else
+                {
+                    destinationCupValue--;
+                    iterationCount++;
+                }
             }
 
-            if (destinationNode == null)
-            {
-                destinationNode = cups.Find(cups.Max());
-            }
-
-            return destinationNode;
-
-
-            //int destinationCupValue = 0;
-            //int destinationCupIndex = -1;
-
-            //destinationCupIndex = cups.IndexOf(node.Value - 1);
-
-            //if (destinationCupIndex >= 0)
-            //{
-            //    return destinationCupIndex;
-            //}
-            //else
-            //{
-            //    //if (value > globalMin)
-            //        if (value > cups.Min())
-            //    { 
-            //        destinationCupValue = cups.Where(i => i < value).OrderByDescending(j => j).First();
-            //    }
-            //    else
-            //    {
-            //        destinationCupValue = cups.Max();
-            //    }
-
-            //    return cups.IndexOf(destinationCupValue);
-            //}
+            if (destinationCupValue <= 0)
+                return cups.IndexOf(cups.Max());
+            else
+                return cups.IndexOf(destinationCupValue);
         }
 
         private void InsertOrAdd(ref List<int> list, int index, int value)
@@ -179,11 +114,6 @@ namespace AOC2015
             {
                 list.Insert(CircularIndex(list.Count, index), value);
             }
-        }
-
-        private void InsertToLinkedList(ref LinkedList<int> list, LinkedListNode<int> destinationNode, int value)
-        {
-            list.AddAfter(destinationNode, value);
         }
     }
 }

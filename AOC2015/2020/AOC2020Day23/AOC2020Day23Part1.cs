@@ -69,18 +69,40 @@ namespace AOC2015
 
         private int DestinationCupIndex(List<int> cups, int value)
         {
-            int destinationCupValue = 0;
+            int destinationCupValue = value - 1;
 
-            if (value > cups.Min())
+            int iterationCount = 0;
+
+            while (iterationCount < 3)
             {
-                destinationCupValue = cups.Where(i => i < value).OrderByDescending(j => j).First();
+                if (cups.Contains(destinationCupValue))
+                {
+                    return cups.IndexOf(destinationCupValue);
+                }
+                else
+                {
+                    destinationCupValue--;
+                    iterationCount++;
+                }                
             }
+
+            if (destinationCupValue <= 0)
+                return cups.IndexOf(cups.Max());
             else
-            {
-                destinationCupValue = cups.Max();
-            }
+                return cups.IndexOf(destinationCupValue);
 
-            return cups.IndexOf(destinationCupValue);
+            //int destinationCupValue = 0;
+
+            //if (value > cups.Min())
+            //{
+            //    destinationCupValue = cups.Where(i => i < value).OrderByDescending(j => j).First();
+            //}
+            //else
+            //{
+            //    destinationCupValue = cups.Max();
+            //}
+
+            //return cups.IndexOf(destinationCupValue);
         }
 
         private void InsertOrAdd(ref List<int> list, int index, int value)
