@@ -27,7 +27,7 @@ namespace AOC2015
                      
         public bool IsPartValid(Int32 part)
         {
-            if ((part >= 1) && ((part <= 2)))
+            if ((part >= 1) && ((part <= 3)))
             {
                 return true;
             }

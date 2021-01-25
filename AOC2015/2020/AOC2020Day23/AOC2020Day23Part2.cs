@@ -15,8 +15,8 @@ namespace AOC2015
         protected override String DoSolve(String[] input)
         {
             long result = 0;
-            int numCups         = 1000000;
-            int numIterations   = 10000000;
+            int numCups = 20;// 1000000;
+            int numIterations = 10000000;// 10000000;
 
             List<int> cups = new List<int>();
 
@@ -36,6 +36,13 @@ namespace AOC2015
 
             int currentIndex = 0;
             int currentIteration = 0;
+
+            List<string> output = new List<string>();
+            output.Add("New Execution Beginning");
+            output.Add(DateTime.Now.ToString());
+            output.Add(ListToString(cups));
+
+            WriteToFile("works.csv", output);
 
             while (currentIteration < numIterations)
             {
@@ -57,8 +64,13 @@ namespace AOC2015
 
                 currentIndex = CircularIndex(cups.Count(), cups.IndexOf(currentValue) + 1);
                 currentIteration++;
+
+                
             }
 
+            List<string> loutput = new List<string>();
+            loutput.Add(ListToString(cups));
+            WriteToFile("works.csv", loutput);
 
             //StringBuilder sb = new StringBuilder();
             int index1 = cups.IndexOf(1);
@@ -114,6 +126,34 @@ namespace AOC2015
             {
                 list.Insert(CircularIndex(list.Count, index), value);
             }
+        }
+
+        private string ListToString(List<int> list)
+        {
+            //int startValue = list.Value;
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (int value in list)
+            {
+                sb.Append(value);
+                sb.Append(",");
+            }
+
+            //sb.Append(list.Next.Value);
+
+            return sb.ToString();
+        }
+
+        private void WriteToFile(string filename, List<string> values)
+        {
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(filename, true))
+            {
+                foreach (string line in values)
+                    file.WriteLine(line);
+            }
+
         }
     }
 }
